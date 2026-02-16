@@ -25,6 +25,8 @@ def sauses_burr():
     print("\n Your Sauce is:",random.choice(Sauses))
 def spices_burr():
     print("\n Your Spice is", random.choice(Spices))
+def wrap_burr():
+    print("\n Your Wrap is", random.choice(Tortilla_Wrap))
 
 meat_preference = input("Out of these options, which one do you favor over the others? \n Chicken, Beef, Steak, Pork, Turkey, Lamb, or Random. ").lower() 
 if meat_preference == "chicken" :
@@ -42,7 +44,7 @@ elif meat_preference == "random":
     meat_preference = random.choice(Meats)
 else:
     print("Not an option")
-allergies = input("Are you vegan or vegitarian? ").lower()
+allergies = input("Are you vegan or vegitarian? If not, put none.  ").lower()
 seafood = input("Do you want Seafood options? ")
 print("Burrito: ")
 if allergies == "vegitarian":
@@ -50,19 +52,43 @@ if allergies == "vegitarian":
     fillings_burr()
     sauses_burr()
     spices_burr()
+    wrap_burr()
 elif allergies == "vegan":
     fillings_burr()
     sauses_burr()
     spices_burr()
+    wrap_burr()
 else:
     print(" Your Meat is:  ", meat_preference) 
     cheeses_burr()
     fillings_burr()
     sauses_burr()
     spices_burr()
+    wrap_burr()
 if seafood == "yes":
-    print("   Your Seafood is: ", random.choice(Seafood_toppings))
+    print(" Your Seafood is: ", random.choice(Seafood_toppings))
 else:
     print("No Seafood choice")
 
+def cost(a,b,c,d,e,f,g):
+    if allergies == "vegan" and seafood == "yes":
+        return c + d + e + f + g
+    elif allergies == "vegitarian" and seafood == "yes":
+            return b + c + d + e + f + g
+    elif allergies == "vegan" and seafood == "no":
+            return c + d + e + f
+    elif allergies == "vegitarian" and seafood == "no":
+            return b + c + d + e + f
+    elif allergies == "none" and seafood == "yes":
+         return a + b + c + d + e + f + g
+    elif allergies == "none" and seafood =="no":
+         return a + b + c + d + e + f
+    else:
+         return 0
 
+
+total_cost = cost(4,3,3,2,1.5,2,4)
+if total_cost == 0:
+    print("Error in options")
+else:
+    print(f"\nTotal cost: {total_cost}")
